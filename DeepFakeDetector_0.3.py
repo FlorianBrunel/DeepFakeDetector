@@ -4,12 +4,10 @@ from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import filedialog
 
-model = load_model('Model\Model10Epochs30batch.h5')
+model = load_model('Model\Model10pochs30batch.h5')
 
 FilePathTest = ""
 ImageToAnalys = ""
-
-
 
 # Définition des fonctions --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -65,7 +63,8 @@ def UpdateImage(FilePathTest):
     ImgToAnalys = ImgToAnalys.resize((700, 700)) 
     tk_ImgToAnalys = ImageTk.PhotoImage(ImgToAnalys)
     LabelImageFrame.config(image=tk_ImgToAnalys)
-    LabelImageFrame.image = tk_ImgToAnalys  # Garde une référence de l'image
+    LabelImageFrame.image = tk_ImgToAnalys
+
 
 
 # --------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -88,6 +87,7 @@ Bg = Image.open("ImageRessource\Background.jpg")
 Bg = Bg.resize((1440, 920)) 
 Bg = ImageTk.PhotoImage(Bg)
 
+
 LabelImageFrame = tk.Label(background, image=Bg)
 LabelImageFrame.place(x=0, y=0)
 
@@ -97,10 +97,9 @@ menu.grid(row=0, column=0)
 menu.place(x=60, y=60)
 
 
-
 # Partie Detection Interface -------------------------------------------------------------------------------------------------------------------------------------------
 
-TestLabelTitle = tk.Label(menu, text="Bienvenue sur DeepfakeDetector !", font=("Arial", 20), bg="white")
+TestLabelTitle = tk.Label(menu, text="Bienvenue sur DeepFakeDetector !", font=("Arial", 20), bg="white")
 TestLabelTitle.place(x = 50, y = 50)
 
 Notice = tk.Label(menu, text="Mode d'emploi : ", font=("Arial", 15), bg="white")
@@ -138,3 +137,4 @@ LabelImageFrame.place(x=570, y= 50)
 
 # Démarrage de l'application ------------------------------------------------------------------------------------------------------------------------------------------
 root.mainloop()
+
