@@ -37,9 +37,9 @@ def LunchAnalyze(FilePathTest):
         ImgToAnalysArray = np.array(ImgToAnalys)
         ImgToAnalysArray = np.expand_dims(ImgToAnalysArray, axis=0)
         predictions = model(ImgToAnalysArray)
-        print(predictions)  # Print out the predictions to see their structure
+        print(predictions)
 
-        # Access the predictions with the key 'output_0' and then get the first element of the tensor
+        
         Rates = tf.nn.softmax(predictions['output_0'][0]).numpy()
 
         RateFake = Rates[0]
