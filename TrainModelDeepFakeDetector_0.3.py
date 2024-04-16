@@ -56,10 +56,10 @@ model.compile(optimizer='adam',
 
 logdir = "logs"
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir, histogram_freq=1, write_images=True)
-model.fit(train_data, validation_data=val_data, epochs=10, callbacks=[tensorboard_callback])
+model.fit(train_data, validation_data=val_data, epochs=4, callbacks=[tensorboard_callback])
 
 model.summary()
-model.save("Model10Epochs50batchv2.h5")
+tf.saved_model.save(model, "Model4Epochs50batchv2.h5")
 
 # Évaluation du modèle (aucune modification nécessaire)
 test_loss, test_acc = model.evaluate(test_data)

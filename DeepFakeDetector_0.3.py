@@ -1,10 +1,11 @@
-from keras.models import load_model
+from keras.layers import TFSMLayer
 import numpy as np
 from PIL import Image, ImageTk
 import tkinter as tk
 from tkinter import filedialog
+import tensorflow as tf
 
-model = load_model('Model\Model10pochs30batch.h5')
+model = TFSMLayer('Model\Model4Epochs50batchv2.h5', call_endpoint='serving_default')
 
 FilePathTest = ""
 ImageToAnalys = ""
@@ -18,7 +19,8 @@ def OpenFilePathTest():
     print(FilePathTest)
     if FilePathTest != "":
         UpdateImage(FilePathTest)
-    
+
+
 def LunchAnalyze(FilePathTest):
     
     if FilePathTest == "":
@@ -34,9 +36,12 @@ def LunchAnalyze(FilePathTest):
         ImgToAnalys = ImgToAnalys.resize((200, 200))
         ImgToAnalysArray = np.array(ImgToAnalys)
         ImgToAnalysArray = np.expand_dims(ImgToAnalysArray, axis=0)
-        predictions = model.predict(ImgToAnalysArray)
-        Rates = predictions[0]
-    
+        predictions = model(ImgToAnalysArray)
+        print(predictions)  # Print out the predictions to see their structure
+
+        # Access the predictions with the key 'output_0' and then get the first element of the tensor
+        Rates = tf.nn.softmax(predictions['output_0'][0]).numpy()
+
         RateFake = Rates[0]
         RateReal = Rates[1]
     
@@ -44,6 +49,7 @@ def LunchAnalyze(FilePathTest):
         print(RateReal)
     
         ResultAnalys(RateFake, RateReal)
+
 
 
 def ResultAnalys(RateFake, RateReal):
