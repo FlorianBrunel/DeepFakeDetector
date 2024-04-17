@@ -6,7 +6,7 @@ data_dir_train = pathlib.Path('DataSet/Train')
 data_dir_valid = pathlib.Path('DataSet/Validation')
 data_dir_test = pathlib.Path('DataSet/Test')
 
-batch_size = 50
+batch_size = 60
 img_height = 200
 img_width = 200
 
@@ -56,10 +56,10 @@ model.compile(optimizer='adam',
 
 logdir = "logs"
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir, histogram_freq=1, write_images=True)
-model.fit(train_data, validation_data=val_data, epochs=4, callbacks=[tensorboard_callback])
+model.fit(train_data, validation_data=val_data, epochs=10, callbacks=[tensorboard_callback])
 
 model.summary()
-tf.saved_model.save(model, "Model4Epochs50batchv2.h5")
+tf.saved_model.save(model, "Model10Epochs60batch")
 
 # Évaluation du modèle (aucune modification nécessaire)
 test_loss, test_acc = model.evaluate(test_data)
