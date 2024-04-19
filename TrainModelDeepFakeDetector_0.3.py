@@ -59,7 +59,7 @@ tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir, histogram_
 model.fit(train_data, validation_data=val_data, epochs=10, callbacks=[tensorboard_callback])
 
 model.summary()
-tf.saved_model.save(model, "Model10Epochs60batch")
+tf.saved_model.save(model, "Model/Model10Epochs60batch")
 
 # Évaluation du modèle (aucune modification nécessaire)
 test_loss, test_acc = model.evaluate(test_data)

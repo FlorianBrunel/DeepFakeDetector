@@ -6,8 +6,7 @@ import cv2
 from PIL import Image
 import os
 
-# rest of your code
-model = TFSMLayer('Model\Model4Epochs50batchv2.h5', call_endpoint='serving_default')
+model = TFSMLayer('Model\Model10Epochs60batch', call_endpoint='serving_default')
 
 FilePathTest = ""
 ImageToAnalys = ""
@@ -21,9 +20,6 @@ def OpenFilePathTest():
     print(FilePathTest)
     TransformVideoToImage(FilePathTest)
     
-        
-
-
 
 def TransformVideoToImage(FilePathTest):
     cap = cv2.VideoCapture(FilePathTest)
@@ -43,8 +39,6 @@ def TransformVideoToImage(FilePathTest):
 
     ReturnResult(Sum_RateBool, count)
 
-    
-
     return count
 
 
@@ -53,11 +47,6 @@ def DestroyContent(count):
         image_path = 'ImagesVideo/VideoFrame'+str(i)+'.jpg'
         os.remove(image_path)
     return count
-
-
-
-
-
 
 def LunchAnalyze(FilePathTest):
     if FilePathTest == "":
@@ -85,12 +74,6 @@ def LunchAnalyze(FilePathTest):
         return RateBool
             
             
-            
-
-        
-
-
-
 def ResultAnalys(RateFake, RateReal):
     if RateFake < RateReal :
         TrueRate = round(100*RateReal)
