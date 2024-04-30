@@ -2,11 +2,11 @@ import pathlib
 import tensorflow as tf
 from tensorflow import keras
 
-data_dir_train = pathlib.Path('DataSet/Train')
-data_dir_valid = pathlib.Path('DataSet/Validation')
-data_dir_test = pathlib.Path('DataSet/Test')
+data_dir_train = pathlib.Path('C:/Users/flori/Desktop/DataSet2/train')
+data_dir_valid = pathlib.Path('C:/Users/flori/Desktop/DataSet2/valid')
+data_dir_test = pathlib.Path('C:/Users/flori/Desktop/DataSet2/test')
 
-batch_size = 60
+batch_size = 150
 img_height = 200
 img_width = 200
 
@@ -39,15 +39,23 @@ model = tf.keras.Sequential([
     keras.layers.Rescaling(1./255),
     keras.layers.Conv2D(128, 4, activation='relu'),
     keras.layers.MaxPooling2D(),
+    keras.layers.BatchNormalization(),
     keras.layers.Conv2D(64, 4, activation='relu'),
     keras.layers.MaxPooling2D(),
+    keras.layers.BatchNormalization(),
     keras.layers.Conv2D(32, 4, activation='relu'),
     keras.layers.MaxPooling2D(),
+    keras.layers.BatchNormalization(),
     keras.layers.Conv2D(16, 4, activation='relu'),
     keras.layers.MaxPooling2D(),
     keras.layers.Flatten(),
+    keras.layers.Dense(128, activation='relu'),
+    keras.layers.Dropout(0.5),
     keras.layers.Dense(64, activation='relu'),
-    keras.layers.Dense(num_classes)
+    keras.layers.BatchNormalization(),
+    keras.layers.Dense(64, activation='relu'),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(num_classes, activation='softmax')
 ])
 
 model.compile(optimizer='adam',
@@ -59,7 +67,7 @@ tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir, histogram_
 model.fit(train_data, validation_data=val_data, epochs=10, callbacks=[tensorboard_callback])
 
 model.summary()
-tf.saved_model.save(model, "Model/Model10Epochs60batch")
+tf.saved_model.save(model, "Model/ModelNewDataSet20E200B2C")
 
 # Évaluation du modèle (aucune modification nécessaire)
 test_loss, test_acc = model.evaluate(test_data)

@@ -7,7 +7,7 @@ import tensorflow as tf
 
 # https://www.youtube.com/watch?v=S3qftloOO4U
 
-model = TFSMLayer('Model\Model4Epochs50batchv2.h5', call_endpoint='serving_default')
+model = TFSMLayer('Model\ModelNewDataSet10E100B', call_endpoint='serving_default')
 
 FilePathTest = ""
 ImageToAnalys = ""

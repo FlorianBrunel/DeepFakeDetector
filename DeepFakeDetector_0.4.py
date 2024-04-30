@@ -8,7 +8,7 @@ import os
 import cv2
 # https://www.youtube.com/watch?v=S3qftloOO4U
 
-model = TFSMLayer('Model\Model4Epochs50batchv2.h5', call_endpoint='serving_default')
+model = TFSMLayer('Model\ModelNewDataSet20E200B2C', call_endpoint='serving_default')
 
 FilePathTest = ""
 ImageToAnalys = ""
@@ -23,19 +23,6 @@ def OpenFilePathTest():
     if (extension == ".jpg" or extension == ".png" or extension == ".jpeg"):
         UpdateImage(FilePathTest)
     
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def RouterModel(FilePathTest):
@@ -95,10 +82,13 @@ def LunchAnalyze(FilePathTest):
     ImgToAnalysArray = np.array(ImgToAnalys)
     ImgToAnalysArray = np.expand_dims(ImgToAnalysArray, axis=0)
     predictions = model(ImgToAnalysArray)
-    Rates = tf.nn.softmax(predictions['output_0'][0]).numpy()
+    Rates = predictions['output_0'].numpy()[0]
 
     RateFake = Rates[0]
     RateReal = Rates[1]
+
+    print(RateFake)
+    print(RateReal)
     
     return RateFake, RateReal
 
