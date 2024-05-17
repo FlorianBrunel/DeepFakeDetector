@@ -75,12 +75,7 @@ tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir, histogram_
 model.fit(train_data, validation_data=val_data, epochs=10, callbacks=[tensorboard_callback])
 
 model.summary()
-<<<<<<< HEAD
 tf.saved_model.save(model, "Model/ModelNewDataSet20E200B2C")
-=======
-tf.saved_model.save(model, "ModelVideo/ModelVideoNewDataSet10E50B")
->>>>>>> 13f9f409407b7bc05fb2093d4f20b542604c5c7c
-
 # Évaluation du modèle (aucune modification nécessaire)
 test_loss, test_acc = model.evaluate(test_data)
 print('Test Loss: {}'.format(test_loss))
