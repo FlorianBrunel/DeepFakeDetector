@@ -2,11 +2,19 @@ import pathlib
 import tensorflow as tf
 from tensorflow import keras
 
+<<<<<<< HEAD
 data_dir_train = pathlib.Path('C:/Users/flori/Desktop/DataSet2/train')
 data_dir_valid = pathlib.Path('C:/Users/flori/Desktop/DataSet2/valid')
 data_dir_test = pathlib.Path('C:/Users/flori/Desktop/DataSet2/test')
 
 batch_size = 150
+=======
+data_dir_train = pathlib.Path('C:/Users/flori/Desktop/NewDataSet/Train')
+data_dir_valid = pathlib.Path('C:/Users/flori/Desktop/NewDataSet/Validation')
+data_dir_test = pathlib.Path('C:/Users/flori/Desktop/NewDataSet/Test')
+
+batch_size = 50
+>>>>>>> 13f9f409407b7bc05fb2093d4f20b542604c5c7c
 img_height = 200
 img_width = 200
 
@@ -67,7 +75,11 @@ tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=logdir, histogram_
 model.fit(train_data, validation_data=val_data, epochs=10, callbacks=[tensorboard_callback])
 
 model.summary()
+<<<<<<< HEAD
 tf.saved_model.save(model, "Model/ModelNewDataSet20E200B2C")
+=======
+tf.saved_model.save(model, "ModelVideo/ModelVideoNewDataSet10E50B")
+>>>>>>> 13f9f409407b7bc05fb2093d4f20b542604c5c7c
 
 # Évaluation du modèle (aucune modification nécessaire)
 test_loss, test_acc = model.evaluate(test_data)

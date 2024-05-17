@@ -6,7 +6,11 @@ import cv2
 from PIL import Image
 import os
 
+<<<<<<< HEAD
 model = TFSMLayer('Model\ModelNewDataSet20E200B2C', call_endpoint='serving_default')
+=======
+model = TFSMLayer('ModelVideo\Video10Epochs60batch', call_endpoint='serving_default')
+>>>>>>> 13f9f409407b7bc05fb2093d4f20b542604c5c7c
 
 FilePathTest = ""
 ImageToAnalys = ""
